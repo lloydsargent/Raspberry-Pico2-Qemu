@@ -4,7 +4,7 @@ _June 7, 2026_
 
 ## What to Expect
 
-Basically, it acts a lot like the Raspberry Pi RP2350 which is based off the Cortex-M33 that is part the QEMU code base. The only major changes in this are the number of interrupts and memory size for the Pico2.
+Basically, it acts a lot like the Raspberry Pi Pico2 using the RP2350 processor (which is based off the Cortex-M33 that is part the QEMU code base). The only major changes in this are the number of interrupts and memory size for the Pico2.
 
 > ⚠️ **You have been warned**  I really don't know the insides of the Qemu architecture.
 > 
@@ -13,6 +13,10 @@ Basically, it acts a lot like the Raspberry Pi RP2350 which is based off the Cor
 > So if it fails, good luck, I can guarantee I do not know how to fix it.
 > 
 > That said, I've been using it for about four months and have yet to crash it. If it breaks, pull the plug, count to ten, then plug it back in. That is the best support you will get.
+
+> ⚠️ **Other Note**
+>
+> The RP2350 has some... what I consider errors. For example, it has some bits labeled as being R/O when in fact they are not. PENDSVSET is R/W with the write being very important. This messed me up and took me a couple of days before I realized the documentation was wrong. The bit is in fact writable.
 
 ## What to expect
 
