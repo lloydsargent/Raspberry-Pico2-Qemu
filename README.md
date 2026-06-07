@@ -30,4 +30,99 @@ git clone https://github.com/qemu/qemu.git
 
 * Step 2
 
+Download the three files, `rp2350.c`, `Kconfig`, and `meson.build` into a different folder. I'll explain why.
 
+* Step 3
+
+Move `rp2350.c` into `qemu/hw/arm` folder. That's it for that file.
+
+* Step 4
+
+Do **NOT** just copy `Kconfig` and `meson.build` over the original ones. You probably will get build errors. Also, I don't know how to fix it because I don't. This was all hacked together. Someone else suggested "copy them over" and it just didn't work. **You have been warned**
+
+* Step 5
+
+Add the following lines in Kconfig:
+
+```
+config RP2350
+    bool
+    default y
+    depends on TCG && ARM
+    select ARMSSE
+    select PL011 # UART
+    select PL031
+    select SPLIT_IRQ
+    select UNIMP
+```
+
+This allows Kconfig to know about the RP2350
+
+* Step 6
+
+Edit `meson.build`. Under this line:
+
+```
+arm_common_ss.add(when: 'CONFIG_MUSCA', if_true: files('musca.c'))
+```
+
+Add the following line:
+
+```
+arm_common_ss.add(when: 'CONFIG_RP2350', if_true: files('rp2350.c'))
+```
+
+* Step 7
+
+Now, you should be able to type the following (assuming all of your other dependencies are satisfied -- go to the QEMU repo to find out what those may be)
+
+```
+mkdir build
+cd build
+../configure --target-list=arm-softmmu -machine=rp2350-pico2 --cpu=cortex-m33
+make
+```
+
+You may get some warnings, but they can safely be ignored. At the end of all this, you should get a file:
+
+`qemu/build/qemu-system-arm-unsigned` which is the executable.
+
+Type the following:
+```
+./qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2 -nographic
+```
+
+And you should get the following:
+
+```
+ Welcome to the RP2350 Pico-2 Emulator
+QEMU 11.0.50 monitor - type 'help' for more information
+(qemu) qemu: fatal: Lockup: can't escalate 3 to HardFault (current priority -1)
+
+R00=00000000 R01=00000000 R02=00000000 R03=00000000
+R04=00000000 R05=00000000 R06=00000000 R07=00000000
+R08=00000000 R09=00000000 R10=00000000 R11=00000000
+R12=00000000 R13=ffffffe0 R14=fffffff9 R15=00000000
+XPSR=40000003 -Z-- A S handler
+s00=00000000 s01=00000000 d00=0000000000000000
+s02=00000000 s03=00000000 d01=0000000000000000
+s04=00000000 s05=00000000 d02=0000000000000000
+s06=00000000 s07=00000000 d03=0000000000000000
+s08=00000000 s09=00000000 d04=0000000000000000
+s10=00000000 s11=00000000 d05=0000000000000000
+s12=00000000 s13=00000000 d06=0000000000000000
+s14=00000000 s15=00000000 d07=0000000000000000
+s16=00000000 s17=00000000 d08=0000000000000000
+s18=00000000 s19=00000000 d09=0000000000000000
+s20=00000000 s21=00000000 d10=0000000000000000
+s22=00000000 s23=00000000 d11=0000000000000000
+s24=00000000 s25=00000000 d12=0000000000000000
+s26=00000000 s27=00000000 d13=0000000000000000
+s28=00000000 s29=00000000 d14=0000000000000000
+s30=00000000 s31=00000000 d15=0000000000000000
+FPSCR: 00000000
+zsh: abort      ./qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2 -nographic
+```
+That should be it!
+
+Feel free to leave an issue, but I can pretty much tell you I have zero knowledge on how to fix the problem.
