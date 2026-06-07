@@ -1,12 +1,12 @@
-# Raspberry-Pico2-Qemu
-This is a Raspberry Pico2 Qemu.            
+# Raspberry-Pico2-QEMU
+This is a Raspberry Pico 2 QEMU.            
 _June 7, 2026_
 
 ## What to Expect
 
-Basically, it acts a lot like the Raspberry Pi Pico2 using the RP2350 processor (which is based off the Cortex-M33 that is part the QEMU code base). The only major changes in this are the number of interrupts and memory size for the Pico2.
+Basically, it acts a lot like the Raspberry Pi Pico 2 using the RP2350 processor (which is based off the Cortex-M33 that is part the QEMU code base). The only major changes in this are the number of interrupts and memory size for the Pico 2.
 
-> ⚠️ **You have been warned**  I really don't know the insides of the Qemu architecture.
+> ⚠️ **You have been warned**  I really don't know the insides of the QEMU architecture.
 > 
 > That is not me being modest, it really is a big hack.
 > 
@@ -18,15 +18,15 @@ Basically, it acts a lot like the Raspberry Pi Pico2 using the RP2350 processor 
 >
 > The RP2350 documentation has some... what I consider errors. For example, it has some bits labeled as being R/O when in fact they are not. PENDSVSET is R/W with the write being very important. This messed me up and took me a couple of days before I realized the documentation was wrong. The bit writable.
 
-## What to expect
+## Failure analysis
 
-It will work until it fails. Again, that's not me being snarky, that's me being ignorant about the guts of Qemu. If someone who knows how Qemu works, feel free to send me the mods to make it better. I guarantee I will have absolutely no idea what you did, but will be impressed.
+It will work until it fails. Again, that's not me being snarky, that's me being ignorant about the guts of QEMU. If someone who knows how QEMU works, feel free to send me the mods to make it better. I guarantee I will have absolutely no idea what you did, but will be impressed.
 
 ## Okay, I've read all the warnings and don't care. How do I build it. 
 
-This assumes you are using the command line. There are no other instructions. Not even an executable. Honestly, it's not that difficult (not as difficult as hacking Qemu which, did I mention it, I really don't understand). It's only seven steps. Easy peasy.
+This assumes you are using the command line. There are no other instructions. Not even an executable. Honestly, it's not that difficult (not as difficult as hacking QEMU which, did I mention it, I really don't understand). It's only seven steps. Easy peasy.
 
-> BTW, this all depends on you making sure you followed Qemu's dependencies which I'm not goint to repeat here, because they do a **much** better job)
+> BTW, this all depends on you making sure you followed QEMU's dependencies which I'm not goint to repeat here, because they do a **much** better job)
 
 * Step 1
 
@@ -40,7 +40,7 @@ git clone https://github.com/qemu/qemu.git
 
 Download the three files (in my repo), `rp2350.c`, `Kconfig`, and `meson.build` into a different folder. Originally I was going to suggest you copy them over the originals, but that won't work. 
 
-> Seriously, do not copy them over the originals. They are there for reference. Someone else suggested copying them over the originals and it just didn't work. `Kconfig` and `meson.build` change a lot. Did I mention I am not a Qemu expert (or even novice) so it will probably break things. And you can count on me not to be able to help you.
+> Seriously, do not copy them over the originals. They are there for reference. Someone else suggested copying them over the originals and it just didn't work. `Kconfig` and `meson.build` change a lot. Did I mention I am not a QEMU expert (or even novice) so it will probably break things. And you can count on me not to be able to help you.
 
 * Step 3
 
@@ -144,7 +144,7 @@ zsh: abort      ./qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2
 
 Feel free to leave an issue, but I can pretty much tell you I have zero knowledge on how to fix the problem. If worse comes to worse, start from the beginning of the instructions and do them very slowly. I tried to be comprehensive, but sometimes I make typeing errors.
 
-> ❗️ Did I mention my understanding of QEMU internals is near nil? It really is! But so far, this project seems to work with QEMU 11.0.50, so if you are having trouble, you may want to pull that version rather than the default one. After all, you just want a Pico2 emulator, right?
+> ❗️ Did I mention my understanding of QEMU internals is near nil? It really is! But so far, this project seems to work with QEMU 11.0.50, so if you are having trouble, you may want to pull that version rather than the default one. After all, you just want a Pico 2 emulator, right?
 
 # How do I run code?
 
