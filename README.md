@@ -16,7 +16,7 @@ Basically, it acts a lot like the Raspberry Pi Pico2 using the RP2350 processor 
 
 > ⚠️ **Other Note**
 >
-> The RP2350 has some... what I consider errors. For example, it has some bits labeled as being R/O when in fact they are not. PENDSVSET is R/W with the write being very important. This messed me up and took me a couple of days before I realized the documentation was wrong. The bit is in fact writable.
+> The RP2350 documentation has some... what I consider errors. For example, it has some bits labeled as being R/O when in fact they are not. PENDSVSET is R/W with the write being very important. This messed me up and took me a couple of days before I realized the documentation was wrong. The bit writable.
 
 ## What to expect
 
