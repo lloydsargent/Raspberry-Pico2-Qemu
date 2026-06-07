@@ -1,5 +1,5 @@
 # Raspberry-Pico2-Qemu
-This is a Raspberry Pico2 Qemu. _June 7, 2026_
+This is a Raspberry Pico2 Qemu.            _June 7, 2026_
 
 ## What to Expect
 
