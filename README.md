@@ -40,11 +40,15 @@ Download the three files (in my repo), `rp2350.c`, `Kconfig`, and `meson.build` 
 
 * Step 3
 
-Move `rp2350.c` into `qemu/hw/arm` folder. That's it for that file.
+Okay, I lied: move `rp2350.c` into `qemu/hw/arm` folder. That's it for that file. Technically, there isn't an `rp2350.c` so it really **isn't** a lie... whatever. Just move it.
 
 * Step 4
 
-Do **NOT** just copy `Kconfig` and `meson.build` over the original ones. You probably will get build errors. Also, I don't know how to fix it because I don't. This was all hacked together. Someone else suggested "copy them over" and it just didn't work. ⚠️ **You have been warned**
+Do **NOT** copy `Kconfig` and `meson.build` over the original ones. You probably will get build errors. Also, I don't know how to fix it because I don't. This was all hacked together. Someone else suggested "copy them over" and it just didn't work. 
+
+> ⚠️ **You have been warned**
+> 
+> If copying the files over works today, it may break in the future. Seen it happen and you will waste a valuable part of your life making it better. Just follow step 5 and step 6. I'm to save your life. 😁
 
 * Step 5
 
@@ -62,7 +66,7 @@ config RP2350
     select UNIMP
 ```
 
-This allows Kconfig to know about the RP2350
+This allows Kconfig to know about the RP2350 and what to expect. What do they mean? I'm sure someone can tell you. It just won't be me.
 
 * Step 6
 
@@ -78,9 +82,11 @@ Add the following line:
 arm_common_ss.add(when: 'CONFIG_RP2350', if_true: files('rp2350.c'))
 ```
 
+Okay, this I kinda know what it means. It means if it found a config tag for RP2350, then compile the file `rp2350.c` file. Okay, you figured that out, too. Feeling that confidence yet? Seriously, we are done with the edits. Now we configure and build. That's the cool part and you'll actually see it work.
+
 * Step 7
 
-Now, you should be able to type the following (assuming all of your other dependencies are satisfied -- go to the QEMU repo to find out what those may be)
+Now, you should be able to type the following (assuming all of your other dependencies are satisfied -- go to the QEMU repo to find out what those may be.) Sphinx I had to use pip.
 
 ```
 mkdir build
@@ -135,3 +141,13 @@ zsh: abort      ./qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2
 Feel free to leave an issue, but I can pretty much tell you I have zero knowledge on how to fix the problem. If worse comes to worse, start from the beginning of the instructions and do them very slowly. I tried to be comprehensive, but sometimes I make typeing errors.
 
 > ❗️ Did I mention my understanding of QEMU internals is near nil? It really is! But so far, this project seems to work with QEMU 11.0.50, so if you are having trouble, you may want to pull that version rather than the default one. After all, you just want a Pico2 emulator, right?
+
+# How do I run code?
+
+I am using a bare bones system, meaning there is no operating system. I'm also using VSCodium (VSCode with the tracking ripped out) and using a debugger. here is how it starts up:
+
+```
+qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2 -nographic -semihosting-config enable=on,target=native -gdb "tcp::50000" -S -kernel executable.elf
+```
+
+I'm using GDB (obviously) without a kernel (also obvious) and the executable, this will shock you, is `executable.elf` -- and it appears to work so far.
