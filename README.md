@@ -33,7 +33,9 @@ git clone https://github.com/qemu/qemu.git
 
 * Step 2
 
-Download the three files, `rp2350.c`, `Kconfig`, and `meson.build` into a different folder. I'll explain why.
+Download the three files (in my repo), `rp2350.c`, `Kconfig`, and `meson.build` into a different folder. Originally I was going to suggest you copy them over the originals, but that won't work. 
+
+> Seriously, do not copy them over the originals. They are there for reference. Someone else suggested copying them over the originals and it just didn't work. `Kconfig` and `meson.build` change a lot. Did I mention I am not a Qemu expert (or even novice) so it will probably break things. And you can count on me not to be able to help you.
 
 * Step 3
 
@@ -130,3 +132,5 @@ zsh: abort      ./qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2
 # That should be it!
 
 Feel free to leave an issue, but I can pretty much tell you I have zero knowledge on how to fix the problem. If worse comes to worse, start from the beginning of the instructions and do them very slowly. I tried to be comprehensive, but sometimes I make typeing errors.
+
+> ❗️ Did I mention my understanding of QEMU internals is near nil? It really is! But so far, this project seems to work with QEMU 11.0.50, so if you are having trouble, you may want to pull that version rather than the default one. After all, you just want a Pico2 emulator, right?
