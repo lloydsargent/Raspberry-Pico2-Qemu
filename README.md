@@ -52,7 +52,7 @@ Do **NOT** copy `Kconfig` and `meson.build` over the original ones. You probably
 
 > ⚠️ **You have been warned**
 > 
-> If copying the files over works today, it may break in the future. Seen it happen and you will waste a valuable part of your life making it better. Just follow step 5 and step 6. I'm to save your life. 😁
+> If copying the files over works today, it may break in the future. Seen it happen and you will waste a valuable part of your life making it better. Just follow step 5 and step 6. I'm here to save your life. 😁
 
 * Step 5
 
@@ -155,3 +155,7 @@ qemu-system-arm-unsigned -cpu cortex-m33 -machine rp2350-pico2 -nographic -semih
 ```
 
 I'm using GDB (obviously) without a kernel (also obvious) and the executable, this will shock you, is `executable.elf` -- and it appears to work so far.
+
+# Why are you not being professional? This reads like you don't know what you are doing.
+
+I'm a tot chill person. Besides, it's my lunch hour. And I've been doing this my entire life. And I'm retired. Everyone writes SOOO seriously. Like they are saving the world. It's just software. Have fun. Go outside. Touch grass. Enjoy.
