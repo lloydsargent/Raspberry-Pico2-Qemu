@@ -1,9 +1,9 @@
 # Raspberry-Pico2-Qemu
-This is a Raspberry Pico2 Qemu. 
+This is a Raspberry Pico2 Qemu. _June 7, 2026_
 
 ## What to Expect
 
-Basically, it acts a lot like the Raspberry Pi RP2350 which is the Arm Cortex-M33 and is based off the Cortex-M33 that is part the QEMU base code. The real change in this is that it uses the memory sizes for the Pico-2.
+Basically, it acts a lot like the Raspberry Pi RP2350 which is based off the Cortex-M33 that is part the QEMU code base. The only major changes in this are the number of interrupts and memory size for the Pico2.
 
 > ⚠️ **You have been warned**  I really don't know the insides of the Qemu architecture.
 > 
