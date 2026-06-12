@@ -20,13 +20,16 @@ Basically, it acts a lot like the Raspberry Pi Pico 2 using the RP2350 processor
 
 > ⚠️ **Yet Another Note**
 >
-> Serial ports arethe Arm Cortex-33 standard, not the RP2350 standard. Why? See the part where I indicate "I really don't know the insides of the QEMU architecture". The only thing this does correctly is:
+> Here are the things that work:
 > * RAM
 > * ROM
 > * Pendsv
 > * SVC
 > * Some of the interrupts
 > * Timer
+>
+> Some of the things that may work but haven't been completely tested:
+> * serial port
 > 
 > Possibly a few other things. Let me know what else it does right and I'll add it to the list. Basically, whatever differs between the RP2350 spec and the cortex-33 spec will not work. Probably.
 
