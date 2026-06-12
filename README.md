@@ -14,9 +14,21 @@ Basically, it acts a lot like the Raspberry Pi Pico 2 using the RP2350 processor
 > 
 > That said, I've been using it for about four months and have yet to crash it. If it breaks, pull the plug, count to ten, then plug it back in. That is the best support you will get.
 
-> ⚠️ **Other Note**
+> ⚠️ **Another Note**
 >
 > The RP2350 documentation has some... what I consider errors. For example, it has some bits labeled as being R/O when in fact they are not. PENDSVSET is R/W with the write being very important. This messed me up and took me a couple of days before I realized the documentation was wrong. The bit writable.
+
+> ⚠️ **Yet Another Note**
+>
+> Serial ports arethe Arm Cortex-33 standard, not the RP2350 standard. Why? See the part where I indicate "I really don't know the insides of the QEMU architecture". The only thing this does correctly is:
+> * RAM
+> * ROM
+> * Pendsv
+> * SVC
+> * Some of the interrupts
+> * Timer
+> 
+> Possibly a few other things. Let me know what else it does right and I'll add it to the list. Basically, whatever differs between the RP2350 spec and the cortex-33 spec will not work. Probably.
 
 ## Failure analysis
 
