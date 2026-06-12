@@ -30,6 +30,10 @@ Basically, it acts a lot like the Raspberry Pi Pico 2 using the RP2350 processor
 > 
 > Possibly a few other things. Let me know what else it does right and I'll add it to the list. Basically, whatever differs between the RP2350 spec and the cortex-33 spec will not work. Probably.
 
+## So Why Use It?
+
+Because you can test software without needing to use the hardware. This can be a great timesaver. Even with the limitations I've outlined, I can test interrupts, timers, etc. without using the hardware that is sitting on my desk. 
+
 ## Failure analysis
 
 It will work until it fails. Again, that's not me being snarky, that's me being ignorant about the guts of QEMU. If someone who knows how QEMU works, feel free to send me the mods to make it better. I guarantee I will have absolutely no idea what you did, but will be impressed.
