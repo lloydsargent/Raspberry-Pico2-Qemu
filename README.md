@@ -114,7 +114,7 @@ Now, you should be able to type the following (assuming all of your other depend
 ```
 mkdir build
 cd build
-../configure --target-list=arm-softmmu -machine=rp2350-pico2 --cpu=cortex-m33
+../configure --target-list=arm-softmmu -machine=rp2350-pico2 --cpu=cortex-m33 --enable=plugins
 make
 ```
 
